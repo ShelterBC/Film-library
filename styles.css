@@ -1,0 +1,266 @@
+/*-----------------------------------------------------------------------------*/
+/* BASIC LAYOUT */ 
+/*-----------------------------------------------------------------------------*/
+body {
+    margin: 0 auto;
+    font-family: 'pt sans', sans-serif; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content {
+    width: 960px;
+    position: relative; top: 0; left: 0;
+    z-index: 1;
+}
+
+/*-----------------------------------------------------------------------------*/
+/* Header */ 
+/*-----------------------------------------------------------------------------*/
+
+input,
+button {
+    background: transparent;
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
+}
+
+header {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    min-width: 300px;
+    transform: translateZ(0);
+    transition: 0.3s;
+    align-items: center;
+    background: #FF5722;
+    color: #FFF;
+    padding: 10px 0;
+}
+
+header.shadow {
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.23), 0 3px 12px rgba(0, 0, 0, 0.16);
+}
+
+header .menu {
+    background: url(https://cbwconline.com/IMG/Codepen/Menu.svg) center no-repeat;
+}
+
+header .menu:hover {
+    background-color: #f83c00;
+}
+
+header h1 {
+    font-weight: 600;
+    font-size: 30px;
+    margin: 0;
+}
+
+header input {
+    background: rgba(255, 255, 255, 0.3);
+    width: 50vw;
+    max-width: 800px;
+    height: 24px;
+    padding: 12px;
+    border-radius: 3px;
+    color: #FFF;
+    transition: 0.3s, width 0.01s;
+}
+
+input::placeholder {
+    color: #fff;
+}
+
+header input:focus,
+header input:active {
+    background: #FFF;
+    color: #000;
+    box-shadow: 0 8px 10px 1px rgba(0, 0, 0, 0.1);
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+    gap: 10px;
+}
+
+.search-container {
+    position: relative;
+    margin: 5px auto;
+}
+
+.search-options {
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+}
+
+
+/* Select element styles */
+select {
+    cursor: pointer;
+    width: 100px;
+    height: 48px;
+    color: 005BA6;
+    display: block;
+    border-radius: 0;
+    box-shadow: none;
+    background: white;
+    font-size: 16px;
+    padding: 0 5px;
+    line-height: normal;
+    border: 3px solid white;
+    transition: border-color 0.2s ease, outline 0.2s ease;
+}
+
+/* Hover state */
+select:hover {
+    border-color: #005BA6;
+}
+
+button {
+    cursor: pointer;
+    background: white;
+    height: 48px;
+    border-radius: 0 3px 3px 0;
+}
+
+/*-----------------------------------------------------------------------------*/
+/* LIBRARY LIST */ 
+/*-----------------------------------------------------------------------------*/
+ul.library {
+    margin: 0;
+    padding: 0 0 10px 0;
+    list-style-type: none;
+    overflow: hidden;
+}
+
+li.media {
+    position: relative; top: 0; left: 0;
+    margin: 0;
+    padding: 10px;
+    float: left;
+    width: 140px; height: 224px;
+    cursor: pointer;
+}
+li.media.selected{ z-index: 4;} /* moves selection over page overlay */
+
+/* hover & active */
+.media:hover { background-color: #E5E5E5; }
+.media:active { background-color: #D9D9D9; }
+.media.selected:hover, li.media.selected:active { background-color: transparent;} /* disables user feedback when selected */
+
+/*-----------------------------------------------------------------------------*/
+/* media COVERS */ 
+/*-----------------------------------------------------------------------------*/
+.media .cover {
+    cursor: pointer;
+    width: 140px; height:224px;
+    box-shadow: 3px 3px 5px rgba(0,0,0,.3);
+    filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=3,MakeShadow=true,ShadowOpacity=0.30);
+    zoom: 1;
+}
+
+.media .cover img {
+    background-color: #e5e5e5;
+    width: 140px; height: 224px;
+    border-width: 0px; /* border to be later leveraged by animation */ 
+    border-style: solid; 
+    border-color: #FFFFFF; 
+}
+
+/* animation start points determined by media position */
+.media.selected .cover { position: absolute; top: 10px; }
+
+.media.selected.left-side.first .cover, .media.selected.right-side .cover { left: 10px; right: auto;}
+.media.selected.right-side.last .cover , .media.selected.left-side .cover { left: auto; right: 10px;}
+
+/*-----------------------------------------------------------------------------*/
+/* SUMMMARY ABSTRACTS */ 
+/*-----------------------------------------------------------------------------*/
+li.media .summary {
+    display: none;
+    cursor: default;
+    position: absolute; top: 10px;
+    z-index: 4;
+    padding: 10px;
+    width: 450px; height: 0px;
+    overflow: scroll;
+}
+
+li.media .summary::-webkit-scrollbar {
+    display: none;
+}
+
+.summary h1, .summary h2, .summary p { cursor: text;}
+
+.summary h1 {
+    font-size: 36px;
+    line-height: 42px;
+    margin: 0 0 4px 0; padding: 0;
+}
+
+.summary h2 {
+    font-weight: normal;
+    font-style: italic;
+    font-size: 24px;
+    margin: 0 0 12px 0;
+    padding: 0 0 12px 0;
+    border-bottom: 2px dotted #999999;
+}
+
+.summary p {
+    font-size: 18px;
+    line-height: 24px;
+    margin: 0; padding: 0;
+}
+
+/* vertical placement of summary determined by media position*/
+.left-side .summary { left: 160px; border-right: 10px solid #D9D9D9; }
+.left-side.first .summary { left: 320px; }
+
+.right-side .summary { left: -480px; border-left: 10px solid #D9D9D9; }
+.right-side.last .summary { left: -640px; }
+
+/*-----------------------------------------------------------------------------*/
+/* PAGE OVERLAYS */ 
+/*-----------------------------------------------------------------------------*/
+.overlay-page {
+    display: none;
+    position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #FFFFFF;
+    opacity: .7;
+    filter: alpha(opacity = 70);
+    z-index: 2;
+}
+
+.overlay-summary {
+    display: none;
+    position: absolute; top: 0; left: 0; height: 0px; width: 480px;
+    background-color: #E5E5E5;
+    opacity: .9;
+    filter: alpha(opacity = 90);
+    z-index: 3;
+}
+
+
+.start-container, .no-found-container, .empty-query-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+}
+
+.start-container p, .no-found-container, .empty-query-container {
+    font-size: 44px;
+    font-weight: bolder;
+}
+
+.no-found-container, .empty-query-container {
+    display: none;
+}

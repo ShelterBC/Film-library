@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Media Library</title>
+    <link rel="icon" type="image/x-icon" href="/assets/icons/logo.svg">
+    <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/paginationjs/dist/pagination.css">
+
+    <link href='styles.css' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="assets/icons/logo.svg" width="30" alt="logo">
+            <h1>Media library</h1>
+        </div>
+        <div class="search-container">
+            <input class="desktop-only" type="text" placeholder="Search" id="searchQuery"/>
+            <div class="search-options">
+                <select id="mediaType">
+                    <option value="movie">Movie</option>
+                    <option value="series">Series</option>
+                    <option value="episode">Episode</option>
+                </select>            
+                <button onclick="createSearchQuery()"><img src="./assets/icons/find.svg" alt="find" width="24"></button>
+            </div>
+        </div>
+    </header>
+    <section class="content">
+        <div class="start-container">
+            <img src="/assets/icons/hello.gif" alt="gif" width="400">
+            <p>Let's find something!!!</p>
+        </div>
+        <div class="no-found-container">
+            <img src="/assets/icons/peachcat-cat.gif" alt="gif" width="400">
+            <p>404 - data not found :(</p>
+        </div>
+        <div class="empty-query-container">
+            <img src="/assets/icons/cat-angry-cat.gif" alt="gif" width="400">
+            <p>400 - the search query is empty</p>
+        </div>
+        <ul class="library"></ul>
+        <div class="overlay-page"></div>
+        <div class="overlay-summary"></div>
+    </section>
+    <div id="pagination-container"></div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://pagination.js.org/dist/2.6.0/pagination.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
